@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenMatch Wireframe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center min-h-screen p-4">
+
+  <!-- Header -->
+  <header class="w-full max-w-md flex justify-between items-center py-4">
+    <h1 class="text-2xl font-bold text-gray-700">OpenMatch</h1>
+    <button class="bg-gray-300 px-3 py-1 rounded-full text-gray-700">Profile</button>
+  </header>
+
+  <!-- Profile Card -->
+  <div class="bg-white rounded-3xl shadow-lg overflow-hidden w-full max-w-md">
+
+    <!-- Image Carousel -->
+    <div class="relative w-full h-80 bg-gray-200 flex items-center justify-center">
+      <span class="text-gray-500">[Photo Carousel]</span>
+      <!-- Prev -->
+      <button class="absolute left-2 bg-white/70 rounded-full p-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <!-- Next -->
+      <button class="absolute right-2 bg-white/70 rounded-full p-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Info Section -->
+    <div class="p-4 space-y-3">
+      <!-- Name, Age, Verified -->
+      <div class="flex items-center gap-2">
+        <h2 class="text-xl font-bold text-gray-800">[Name], [Age]</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 
+                   21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+        </svg>
+      </div>
+
+      <!-- Location -->
+      <div class="flex items-center text-gray-600 text-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+        </svg>
+        <span>[City, Country]</span>
+      </div>
+
+      <!-- Interests -->
+      <div class="flex flex-wrap gap-2">
+        <span class="px-3 py-1 bg-gray-200 rounded-full text-gray-700 text-sm">[Interest 1]</span>
+        <span class="px-3 py-1 bg-gray-200 rounded-full text-gray-700 text-sm">[Interest 2]</span>
+        <span class="px-3 py-1 bg-gray-200 rounded-full text-gray-700 text-sm">[Interest 3]</span>
+      </div>
+
+      <!-- Prompts -->
+      <div class="space-y-2">
+        <div class="bg-gray-100 p-2 rounded-md text-sm text-gray-700">
+          <strong>[Prompt 1]</strong><br>
+          [Answer 1]
+        </div>
+        <div class="bg-gray-100 p-2 rounded-md text-sm text-gray-700">
+          <strong>[Prompt 2]</strong><br>
+          [Answer 2]
+        </div>
+        <div class="bg-gray-100 p-2 rounded-md text-sm text-gray-700">
+          <strong>[Prompt 3]</strong><br>
+          [Answer 3]
+        </div>
+      </div>
+
+      <!-- Comment Input -->
+      <input type="text" placeholder="Say something about her photos..." 
+             class="w-full p-2 border border-gray-300 rounded-full text-sm" />
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex justify-center gap-6 py-4">
+      <button class="bg-white w-12 h-12 rounded-full border border-gray-400 flex items-center justify-center text-gray-600">
+        ✖
+      </button>
+      <button class="bg-white w-12 h-12 rounded-full border border-gray-400 flex items-center justify-center text-gray-600">
+        ❤️
+      </button>
+      <button class="bg-white w-12 h-12 rounded-full border border-gray-400 flex items-center justify-center text-gray-600">
+        💬
+      </button>
+    </div>
+
+  </div>
+
+</body>
+</html>
