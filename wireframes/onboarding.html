@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Onboarding</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+  <div class="bg-white shadow-lg rounded-2xl p-6 w-full max-w-lg">
+
+    <!-- Progress Bar -->
+    <div class="flex gap-1 mb-6">
+      <div id="prog1" class="flex-1 h-2 bg-pink-500 rounded-full"></div>
+      <div id="prog2" class="flex-1 h-2 bg-gray-200 rounded-full"></div>
+      <div id="prog3" class="flex-1 h-2 bg-gray-200 rounded-full"></div>
+    </div>
+
+    <!-- Step 1 -->
+    <div id="step1">
+      <h1 class="text-2xl font-bold mb-4">Let’s start with you</h1>
+      <label class="block mb-4">
+        <span>Name</span>
+        <input type="text" class="mt-1 w-full border rounded-lg p-2" required>
+      </label>
+      <label class="block mb-4">
+        <span>Age</span>
+        <input type="number" min="18" class="mt-1 w-full border rounded-lg p-2" required>
+      </label>
+      <label class="block mb-4">
+        <span>Gender</span>
+        <select class="mt-1 w-full border rounded-lg p-2" required>
+          <option value="">Select</option>
+          <option>Woman</option>
+          <option>Man</option>
+          <option>Non-binary</option>
+        </select>
+      </label>
+      <label class="block mb-6">
+        <span>Looking for</span>
+        <select class="mt-1 w-full border rounded-lg p-2" required>
+          <option value="">Select</option>
+          <option>Women</option>
+          <option>Men</option>
+          <option>Everyone</option>
+        </select>
+      </label>
+      <button onclick="nextStep(2)" class="w-full bg-pink-500 text-white py-2 rounded-lg">Continue →</button>
+    </div>
+
+    <!-- Step 2 -->
+    <div id="step2" class="hidden">
+      <h1 class="text-2xl font-bold mb-4">Add your photos</h1>
+      <p class="text-gray-500 mb-4">Upload 3 of your best photos</p>
+      <div class="grid grid-cols-3 gap-3 mb-6">
+        <label class="flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-4 cursor-pointer">
+          <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, 1)">
+          <img id="preview1" class="w-full h-32 object-cover hidden rounded-lg">
+          <span class="text-sm text-gray-500">Photo 1</span>
+        </label>
+        <label class="flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-4 cursor-pointer">
+          <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, 2)">
+          <img id="preview2" class="w-full h-32 object-cover hidden rounded-lg">
+          <span class="text-sm text-gray-500">Photo 2</span>
+        </label>
+        <label class="flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-4 cursor-pointer">
+          <input type="file" accept="image/*" class="hidden" onchange="previewImage(event, 3)">
+          <img id="preview3" class="w-full h-32 object-cover hidden rounded-lg">
+          <span class="text-sm text-gray-500">Photo 3</span>
+        </label>
+      </div>
+      <button onclick="nextStep(3)" class="w-full bg-pink-500 text-white py-2 rounded-lg">Continue →</button>
+    </div>
+
+    <!-- Step 3 -->
+    <div id="step3" class="hidden">
+      <h1 class="text-2xl font-bold mb-4">Select your interests</h1>
+      <p class="text-gray-500 mb-4">Pick up to 5 things you like</p>
+      <div class="flex flex-wrap gap-2 mb-6">
+        <span onclick="toggleInterest(this)" class="px-4 py-2 bg-gray-100 rounded-full cursor-pointer">Music</span>
+        <span onclick="toggleInterest(this)" class="px-4 py-2 bg-gray-100 rounded-full cursor-pointer">Travel</span>
+        <span onclick="toggleInterest(this)" class="px-4 py-2 bg-gray-100 rounded-full cursor-pointer">Sports</span>
+        <span onclick="toggleInterest(this)" class="px-4 py-2 bg-gray-100 rounded-full cursor-pointer">Cooking</span>
+        <span onclick="toggleInterest(this)" class="px-4 py-2 bg-gray-100 rounded-full cursor-pointer">Reading</span>
+        <span onclick="toggleInterest(this)" class="px-4 py-2 bg-gray-100 rounded-full cursor-pointer">Movies</span>
+        <span onclick="toggleInterest(this)" class="px-4 py-2 bg-gray-100 rounded-full cursor-pointer">Gaming</span>
+      </div>
+      <button onclick="finishOnboarding()" class="w-full bg-pink-500 text-white py-2 rounded-lg">Finish →</button>
+    </div>
+
+  </div>
+
+<script>
+let selected = [];
+
+function nextStep(step) {
+  document.querySelectorAll('[id^="step"]').forEach(s => s.classList.add('hidden'));
+  document.getElementById(`step${step}`).classList.remove('hidden');
+  
+  document.querySelectorAll('[id^="prog"]').forEach((p,i) => {
+    p.classList.toggle('bg-pink-500', i < step);
+    p.classList.toggle('bg-gray-200', i >= step);
+  });
+}
+
+function previewImage(event, index) {
+  const reader = new FileReader();
+  reader.onload = function(){
+    const img = document.getElementById(`preview${index}`);
+    img.src = reader.result;
+    img.classList.remove('hidden');
+  }
+  reader.readAsDataURL(event.target.files[0]);
+}
+
+function toggleInterest(el) {
+  const interest = el.innerText;
+  if (selected.includes(interest)) {
+    selected = selected.filter(i => i !== interest);
+    el.classList.remove('bg-pink-500', 'text-white');
+    el.classList.add('bg-gray-100');
+  } else if (selected.length < 5) {
+    selected.push(interest);
+    el.classList.add('bg-pink-500', 'text-white');
+    el.classList.remove('bg-gray-100');
+  }
+}
+
+function finishOnboarding() {
+  alert("Onboarding complete! Interests: " + selected.join(", "));
+}
+</script>
+</body>
+</html>
