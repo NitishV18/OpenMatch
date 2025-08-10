@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenMatch Chat Wireframe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { max-width: 450px; margin: auto; background-color: #f3f4f6; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Chat List Screen -->
+  <div id="chatList" class="flex-1 flex flex-col">
+    <header class="bg-white shadow p-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">Chats</h1>
+    </header>
+    <div class="flex-1 overflow-y-auto">
+      <!-- Chat Item -->
+      <div class="flex items-center p-4 border-b bg-white hover:bg-gray-100 cursor-pointer" onclick="openChat()">
+        <div class="w-12 h-12 bg-gray-300 rounded-full"></div>
+        <div class="ml-3">
+          <p class="font-semibold">Jane Doe</p>
+          <p class="text-sm text-gray-500">Hey! How’s your day?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Screen -->
+  <div id="chatScreen" class="hidden flex-1 flex flex-col">
+    <header class="bg-white shadow p-4 flex justify-between items-center">
+      <button onclick="backToChats()" class="text-sm text-blue-500">← Back</button>
+      <h1 class="font-semibold">Jane Doe</h1>
+      <button onclick="viewProfile()" class="bg-blue-500 text-white px-3 py-1 rounded-full text-xs">View Profile</button>
+    </header>
+    <div class="flex-1 p-4 overflow-y-auto space-y-2">
+      <div class="bg-blue-100 p-2 rounded-lg self-start">Hey!</div>
+      <div class="bg-gray-100 p-2 rounded-lg self-end">Hi there 👋</div>
+    </div>
+    <div class="p-4 bg-white flex gap-2">
+      <input type="text" class="flex-1 border rounded-full px-3 py-2 text-sm" placeholder="Type a message...">
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-full text-sm">Send</button>
+    </div>
+  </div>
+
+  <!-- Profile Screen -->
+  <div id="profileScreen" class="hidden flex-1 flex-col items-center overflow-y-auto">
+    <header class="bg-white shadow p-4 flex justify-between items-center w-full">
+      <button onclick="backToChat()" class="text-sm text-blue-500">← Back</button>
+      <h1 class="font-semibold">Profile</h1>
+      <span></span>
+    </header>
+    <div class="bg-white rounded-3xl shadow-lg overflow-hidden w-full m-4">
+      <!-- Photo Carousel -->
+      <div class="relative w-full h-80 bg-gray-200 flex items-center justify-center">
+        <span class="text-gray-500">[Photo Carousel]</span>
+      </div>
+      <div class="p-4 space-y-3">
+        <!-- Name + Verified -->
+        <div class="flex items-center gap-2">
+          <h2 class="text-xl font-bold text-gray-800">Jane Doe, 26</h2>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 
+                     21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+          </svg>
+        </div>
+        <!-- Location -->
+        <div class="flex items-center text-gray-600 text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+          </svg>
+          <span>New York, USA</span>
+        </div>
+        <!-- Interests -->
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-gray-200 rounded-full text-sm">Music</span>
+          <span class="px-3 py-1 bg-gray-200 rounded-full text-sm">Hiking</span>
+          <span class="px-3 py-1 bg-gray-200 rounded-full text-sm">Photography</span>
+        </div>
+        <!-- Prompts -->
+        <div class="space-y-2">
+          <div class="bg-gray-100 p-2 rounded-md text-sm"><strong>My perfect weekend:</strong><br> Exploring nature trails.</div>
+          <div class="bg-gray-100 p-2 rounded-md text-sm"><strong>One thing I can't live without:</strong><br> Coffee.</div>
+          <div class="bg-gray-100 p-2 rounded-md text-sm"><strong>My dream vacation:</strong><br> Japan during cherry blossom season.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openChat() {
+      document.getElementById("chatList").classList.add("hidden");
+      document.getElementById("chatScreen").classList.remove("hidden");
+    }
+    function backToChats() {
+      document.getElementById("chatScreen").classList.add("hidden");
+      document.getElementById("chatList").classList.remove("hidden");
+    }
+    function viewProfile() {
+      document.getElementById("chatScreen").classList.add("hidden");
+      document.getElementById("profileScreen").classList.remove("hidden");
+    }
+    function backToChat() {
+      document.getElementById("profileScreen").classList.add("hidden");
+      document.getElementById("chatScreen").classList.remove("hidden");
+    }
+  </script>
+
+</body>
+</html>
